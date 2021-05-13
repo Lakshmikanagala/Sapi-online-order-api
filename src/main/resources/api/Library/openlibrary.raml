@@ -1,0 +1,51 @@
+#%RAML 1.0 Library
+
+types:
+  CustomerType:
+    properties:
+      firstName:
+        type: string
+        required: true
+        example: Sam
+      secondName:
+        type: string
+        required: true
+        example: Son
+      lastName:
+        type: string
+        required: true
+        example: James
+      address:
+        type: Address[]
+      phoneNumber:
+        type: Phonenum[]
+  Address:
+    properties:
+      Street:
+        type: string
+        required: true
+        example: BeatStone
+      City:
+        type: string
+        required: true
+        example: Novatal
+      State:
+        type: string
+        required: true
+        example: Akal
+  Phonenum:
+    properties:
+      phoneNumber:
+        type: number
+        required: true
+        example: 91897654321
+        
+
+          
+
+                          
+          
+
+      
+      
+

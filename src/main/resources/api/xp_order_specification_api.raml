@@ -1,0 +1,103 @@
+#%RAML 1.0
+title: xp_Order_Specification_Api
+
+protocols: [HTTP,HTTPS]
+
+securitySchemes:
+  secureschema: !include /SecuritySchemas/MainSecuritySchema.raml
+  
+traits:
+  ErrorRespo: !include /Traits/ErrorResponce.raml
+securedBy:
+  - secureschema
+
+uses:
+  OpenCustData: /Library/openlibrary.raml
+  
+/accounts:
+ post:
+   is: [ErrorRespo]
+   body:
+     application/json:
+       example: !include /examples/accountsData.json
+   responses:
+    201:
+      body:
+        application/json:
+          example: !include /examples/AccountsRespData.json
+ get:
+  queryParameters:
+    AccountId:
+      type: string
+      required: true
+      example: !include /examples/accountsData.json
+  responses:
+    200:
+      body:
+        application/json:
+          example: !include /examples/AccountsRespData.json
+ /{accountId}:
+   description: "Fetching the Details Using Uri Param"
+   get:
+     responses:
+       200:
+         body:
+          application/json:
+            example: !include /examples/accountsData.json
+   /balances:
+     description: "Fetching the Details Using Balance History"
+     get:
+       responses:
+         200:
+           body:
+                    application/json:
+                              example: !include /examples/balancesData.json
+   /transaction:
+     get:
+        description: fetching the data use of trns
+        queryParameters:
+          fromDate:
+            type: string
+            required: false
+            example: "2020-09-01"
+          toDAte:
+            type: string
+            required: false
+            example: "2020-09-21"
+        responses:
+          200:
+            body:
+              application/json:
+                example: !include /examples/TransactionDeleteData.json
+
+     /{transactionId}:
+       get:
+         is: [ErrorRespo]
+         responses:
+           200:
+             body:
+               application/json:
+                 example: !include /examples/transaction.json
+       delete:
+         is: [ErrorRespo]
+         description: Deleting the existing trasaction details
+         responses:
+           200:
+             body:
+              application/json:
+                example: !include /examples/TransactionDeleteData.json
+/cutomer:
+  get:
+    responses:
+      200:
+        body:
+          application/json:
+            type: OpenCustData.CustomerType[]
+            
+        
+                  
+        
+      
+  
+
+  

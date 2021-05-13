@@ -1,0 +1,15 @@
+#%RAML 1.0 SecurityScheme
+type: x-token-Basic Authuntication
+description: This will Ask credentials to a customers to get access
+describedBy:
+  headers:
+    Username:
+      type: string
+    Passward:
+      type: string
+  responses:
+    401:
+      description: 401-too many Requests
+  
+
+  
